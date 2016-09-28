@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, Http404
 from django.urls import reverse
-from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth import authenticate, login as auth_login, logout
 from django.contrib.auth.models import User
 import re
 # Create your views here.
@@ -13,14 +13,14 @@ def login(req):
     password = req.POST['password']
     user = authenticate(username=username, password=password)
     if user is not None:
-        login(req, user)
+        auth_login(req, user)
         return render(req, 'login/main_page.html')
     else:
         return render(req, 'login/index.html', {
             'error_message': 'Your username or password is wrong.'
         })
 
-def logout(req):
+def log_out(req):
     logout(req)
     return render(req, 'login/index.html')
 
