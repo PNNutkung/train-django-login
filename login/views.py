@@ -34,23 +34,27 @@ def create_new_user(req):
     email = req.POST['email']
     firstname = req.POST['firstname']
     lastname = req.POST['lastname']
-    if User.objects.get(username=username) is not None:
-        return render(req, 'login/register.html', {
-            'error_message': 'This username has already taken.'
-        })
-    elif password != confirm_password:
-        return render(req, 'login/register.html', {
-            'error_message': 'Your password is not match.'
-        })
-    elif not re.match(r'[^@]+@[^@]+\.[^@]+', email):
-        return render(req, 'login/register.html', {
-            'error_message': 'Your email is not valid.'
-        })
-    else:
-        user = User.objects.create_user(username, email=email, password=password)
-        return render(req, 'login/index.html', {
-            'error_message': 'Register successfully.'
-        })
+    user = None
+    try:
+        user = User.objects.get(username=username)
+    except(User.DoesNotExist):
+        if user is not None:
+            return render(req, 'login/register.html', {
+                'error_message': 'This username has already taken.'
+            })
+        elif password != confirm_password:
+            return render(req, 'login/register.html', {
+                'error_message': 'Your password is not match.'
+            })
+        elif not re.match(r'[^@]+@[^@]+\.[^@]+', email):
+            return render(req, 'login/register.html', {
+                'error_message': 'Your email is not valid.'
+            })
+        else:
+            user = User.objects.create_user(username, email=email, password=password)
+            return render(req, 'login/index.html', {
+                'error_message': 'Register successfully.'
+            })
 
 def not_found(req):
     raise Http404('Page not found!')
