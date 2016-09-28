@@ -51,7 +51,7 @@ def create_new_user(req):
                 'error_message': 'Your email is not valid.'
             })
         else:
-            user = User.objects.create_user(username, email=email, password=password)
+            user = User.objects.create_user(username, email=email, password=password, first_name=firstname, last_name=lastname)
             return render(req, 'login/index.html', {
                 'error_message': 'Register successfully.'
             })
