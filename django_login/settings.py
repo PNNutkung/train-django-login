@@ -76,11 +76,9 @@ WSGI_APPLICATION = 'django_login.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'django_login_test',
-        'HOST': 'localhost',
-        'PORT': '3306',
-        'USER': 'root',
-        'PASSWORD': '',
+        'OPTIONS': {
+            'read_default_file': './my.cnf'
+        },
     }
 }
 
