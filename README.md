@@ -49,7 +49,7 @@ DATABASES = {
 ```
 You can separate your database information to `cnf` file and tell the path here **The path is start from folder that contains `manage.py`**
 
-    **my.cnf**
+ **my.cnf**
 ```
 [client]
 database = [database_name]
@@ -73,4 +73,30 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 ]
+```
+
+6. Add project route url to app url  
+
+    ```
+    from django.conf.urls import url,include
+    from django.contrib import admin
+
+    urlpatterns = [
+        url(r'^',include('login.urls')),
+        url(r'^admin/', admin.site.urls),
+    ]
+    ```
+
+7. Create a directory `[app_name]/templates/login` then create a file `index.html`
+```
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+    </head>
+    <body>
+
+    </body>
+</html>
 ```
