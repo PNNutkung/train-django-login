@@ -17,7 +17,7 @@ def login(req):
         return render(req, 'login/main_page.html')
     else:
         return render(req, 'login/index.html', {
-            error_message: 'Your username or password is wrong.'
+            'error_message': 'Your username or password is wrong.'
         })
 
 def logout(req):
@@ -34,19 +34,22 @@ def create_new_user(req):
     email = req.POST['email']
     firstname = req.POST['firstname']
     lastname = req.POST['lastname']
-
-    if password != confirm_password:
+    if User.objects.get(username=username) is not None:
         return render(req, 'login/register.html', {
-            error_message: 'Your password is not match.'
+            'error_message': 'This username has already taken.'
+        })
+    elif password != confirm_password:
+        return render(req, 'login/register.html', {
+            'error_message': 'Your password is not match.'
         })
     elif not re.match(r'[^@]+@[^@]+\.[^@]+', email):
         return render(req, 'login/register.html', {
-            error_message: 'Your email is not valid.'
+            'error_message': 'Your email is not valid.'
         })
     else:
         user = User.objects.create_user(username, email=email, password=password)
         return render(req, 'login/index.html', {
-            error_message: 'Register successfully.'
+            'error_message': 'Register successfully.'
         })
 
 def not_found(req):
