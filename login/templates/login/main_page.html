@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Logged In</title>
+    </head>
+    <body>
+        <h1>Login Successfully.</h1>
+        <form action="{% url 'logout' %}" method="post">
+            <div class="container">
+                <button type="submit" name="logout">Log out</button>
+            </div>
+        </form>
+    </body>
+</html>

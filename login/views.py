@@ -9,5 +9,8 @@ def index(req):
 def login(req):
     return None
 
+def logout(req):
+    return None
+
 def not_found(req):
     raise Http404('Page not found!')
