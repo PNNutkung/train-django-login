@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Register</title>
+    </head>
+    <body>
+        <h2>Register</h2>
+        {% if error_message %}<p><strong>{{ error_message }}</strong></p> {% endif %}
+
+        <form action="{% url 'login:create_new_user' %}" method="post">
+            {% csrf_token %}
+            <div class="container">
+                <label><b>Username</b></label>
+                <input type="text" name="username" placeholder="Enter username." required>
+
+                <label><b>Password</b></label>
+                <input type="password" name="password" placeholder="Enter password" required>
+
+                <label><b>Confirm Password</b></label>
+                <input type="password" name="confirm_password" placeholder="Enter password" required>
+
+                <label><b>First name</b></label>
+                <input type="text" name="firstname" placeholder="Enter first name." required>
+
+                <label><b>Last name</b></label>
+                <input type="text" name="lastname" placeholder="Enter Lastname." required>
+
+                <label><b>E-mail</b></label>
+                <input type="text" name="email" placeholder="Enter email." required>
+
+                <input type="submit" name="submit" value="Submit">
+            </div>
+        </form>
+    </body>
+</html>

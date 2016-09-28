@@ -7,9 +7,17 @@ def index(req):
     return render(req, 'login/index.html')
 
 def login(req):
-    return None
+    username = req.POST['username']
+    password = req.POST['password']
+    return render(req, 'login/main_page.html')
 
 def logout(req):
+    return render(req, 'login/index.html')
+
+def register(req):
+    return render(req, 'login/register.html')
+
+def create_new_user(req):
     return None
 
 def not_found(req):
