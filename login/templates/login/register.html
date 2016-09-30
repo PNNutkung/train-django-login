@@ -3,6 +3,8 @@
     <head>
         <meta charset="utf-8">
         <title>Register</title>
+        {% load static %}
+        <link rel="stylesheet" type="text/css" href="{% static 'login/style.css' %}" />
     </head>
     <body>
         <h2>Register</h2>
@@ -29,7 +31,7 @@
                 <label><b>E-mail</b></label>
                 <input type="text" name="email" placeholder="Enter email." required>
 
-                <input type="submit" name="submit" value="Submit">
+                <button type="submit" name="submit">Register</button>
             </div>
         </form>
     </body>
